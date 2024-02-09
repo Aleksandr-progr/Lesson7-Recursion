@@ -1,45 +1,56 @@
-﻿// Основной файл программы
+﻿using System;
+
 namespace Tasks
 {
-    // Класс, содержащий точку входа в программу и выполнение задач
     static class Program
     {
-        // Главный метод программы
+        // Основная функция программы
         public static void Main(string[] args)
         {
-            // Очистка консоли перед выполнением задачи
             Console.Clear();
-            // Вывод приглашения для выбора задачи
-            Console.Write(TaskSelectionPrompt);
-            // Получение номера выбранной задачи от пользователя и выполнение соответствующей задачи
-            int selectedTask = NumberInTerminal(3, TaskSelectionPrompt, 1);
-            ExecuteTask(selectedTask);
+            string stringLoad = "Введите номер задачи (от 1 до 3) => ";
+            Console.Write(stringLoad);
+            Tasks(NumberInTerminal(3, stringLoad, 1)); // Вызов функции Tasks с введенным пользователем номером задачи
         }
 
-        // Метод для выполнения выбранной задачи
-        static void ExecuteTask(int taskNumber)
+        // Функция для выполнения задач в зависимости от выбранного номера
+        static void Tasks(int num)
         {
-            switch (taskNumber)
+            switch (num)
             {
                 case 1:
-                    // Выполнение задачи 1
-                    Task1.Execute();
+                    // Задача 1: вывод натуральных чисел в промежутке от M до N
+                    Console.WriteLine("Задача 1: Задайте значения M и N. Напишите программу, которая выведет ");
+                    Console.WriteLine("все натуральные числа в промежутке от M до N. Использовать рекурсию, не использовать циклы.");
+                    string firstText = "Введите значение М => ";
+                    Console.Write(firstText);
+                    int firstNumber = NumberInTerminal(0xFFFFFF, firstText, 1);
+                    string secondText = "Введите значение N => ";
+                    Console.Write(secondText);
+                    int secondNumber = NumberInTerminal(0xFFFFFF, secondText, 1);
+                    Console.WriteLine($"Числа от {firstNumber} до {secondNumber} => {ShowDigit(firstNumber, secondNumber)}");
                     break;
+
                 case 2:
-                    // Выполнение задачи 2
-                    Task2.Execute();
+                    // Задача 2: вычисление функции Аккермана с помощью рекурсии
+                    Console.WriteLine("Задача 2: Напишите программу вычисления функции Аккермана с помощью рекурсии.");
+                    Console.WriteLine("Даны два неотрицательных числа m и n.");
+                    string firstText2 = "Введите значение m => ";
+                    Console.Write(firstText2);
+                    int firstNumber2 = NumberInTerminal(0xFFFFFF, firstText2, 0);
+                    string secondText2 = "Введите значение n => ";
+                    Console.Write(secondText2);
+                    int secondNumber2 = NumberInTerminal(0xFFFFFF, secondText2, 0);
+                    Console.WriteLine($"Значение по фукнкции Аккермана ({firstNumber2},{secondNumber2}) = {Ack(firstNumber2, secondNumber2)}");
                     break;
+
                 case 3:
-                    // Выполнение задачи 3
-                    Task3.Execute();
-                    break;
-                default:
-                    // Вывод сообщения об ошибке при неверном выборе задачи
-                    Console.WriteLine("Неверный номер задачи.");
+                    // Задача 3: вывод элементов массива, начиная с конца
+                    Console.WriteLine("Задача 3: Задайте произвольный массив. Выведете его элементы,");
+                    Console.WriteLine("начиная с конца. Использовать рекурсию, не использовать циклы.");
+                    int[] array = CreateArray(10, 10, 0);
+                    Console.WriteLine($"Произвольный массив => [{PrintArray(array)}]");
+                    Console.WriteLine($"Перевернутый массив => [{PrintArray(ArraySwap(array, array.Length - 1))}]");
                     break;
             }
         }
-
-        // Другие методы программы и константы здесь
-    }
-}
